@@ -1,0 +1,65 @@
+﻿@model SelfEduV2.com.Models.SubmitContentViewModel
+
+@{
+    ViewBag.Title = "Upload Video";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upload Video</h2>
+
+@using (Html.BeginForm("Create", "Videos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Upload Video</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Keywords, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Keywords, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Keywords, "", new { @class = "text-danger" })
+        </div>
+    </div>
+   
+    <div class="fileInputContainer">
+        @Html.TextBoxFor(model => model.Thumbnail, htmlAttributes: new { type = "file", @class = "fileInput", id = "thumbnail", name = "files[]" })
+        <!--<input type="file" class="fileInput" id="thumbnail" name="files[]" required>-->
+        <label class="fileInputLable" for="customFile">Upload Thumbnail for video</label>
+    </div>
+
+    <div class="fileInputContainer">
+        @Html.TextBoxFor(model => model.Video, htmlAttributes: new { type = "file", @class = "fileInput", id = "video", name = "files[]" })
+        <!--<input type="file" class="fileInput" id="video" name="files[]" required>-->
+        <label class="fileInputLable" for="customFile">Upload Video</label>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" id="submitBtn" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/CustomScripts/FileUpload.js")"></script>
+}

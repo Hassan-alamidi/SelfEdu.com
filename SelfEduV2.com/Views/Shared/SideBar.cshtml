@@ -1,0 +1,17 @@
+﻿@if (Request.IsAuthenticated)
+{
+
+    <button type="button" class="navbar-toggle" id="SideBarBtn">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    
+    <div id="SideBar">
+        <ul>
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("About", "About", "Home")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        </ul>
+    </div>
+}

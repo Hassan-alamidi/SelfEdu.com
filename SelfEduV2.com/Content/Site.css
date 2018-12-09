@@ -1,0 +1,170 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#SideBarBtn {
+    float:left !important;
+    margin-right:0px !important;
+    margin-left:15px !important;
+    display:block;
+}
+
+#SideBar {
+    top: 50px;
+    width: 0;
+    height: 100%;
+    position: fixed;
+    background-color: #222222;
+    overflow-x: hidden;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+
+    #SideBar ul {
+        padding:0;
+    }
+        #SideBar ul li:first-child {
+            border-top-width: 1px;
+        }
+        #SideBar ul li {
+            list-style-type: none;
+            font-size: 1.2em;
+            border-top-width: 0;
+            border-bottom-width: 1px;
+            border-left-width: 0;
+            border-right-width: 0;
+            border-style: solid;
+            height: 40px;
+            text-align: center;
+        }
+
+            #SideBar ul li:hover {
+                background-color: #323232;
+            }
+            #SideBar ul li a {
+                vertical-align: -webkit-baseline-middle;
+                color: #9d9d9d;
+            }
+
+
+
+.sideBToggle {
+    width:15% !important;
+    -webkit-transition: width 1s;
+    transition: width 1s;
+}
+
+#appName {
+    margin-left: 20px;
+}
+
+#usernameBtn {
+    cursor:pointer;
+}
+
+#userdropdown {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50px;
+    height: 0%;
+    overflow-y: hidden;
+    -webkit-transition: height 1s;
+    transition: height 1s;
+}
+
+    #userdropdown li:hover {
+        background-color: #323232;
+    }
+
+.topBToggle {
+    height: 150px !important;
+    -webkit-transition: height 1s;
+    transition: height 1s;
+}
+
+.form-horizontal {
+    display: flex;
+    flex-direction: column;
+}
+
+.fileInputContainer {
+    font-size: 1rem;
+    font-weight: 400;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 280px;
+    height: 40px;
+    margin-left: 17%;
+    margin-bottom: 20px;
+}
+
+.fileInput {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    opacity: 0;
+}
+
+.fileInputLable {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: 40px;
+    padding: 1.2em .8em;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+}
+
+    .fileInputLable::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
+        display: block;
+        height: 38px;
+        padding: 1.2em .8em;
+        line-height: 1.5;
+        color: #495057;
+        content: "Browse";
+        background-color: #e9ecef;
+        border-left: 1px solid #ced4da;
+        border-radius: 0 8px 8px 0;
+    }
+
+@media (max-width: 991px) {
+    .fileInputContainer {
+        margin-left: 0;
+    }
+}
