@@ -16,8 +16,8 @@ namespace SelfEduV2.com.Controllers
 {
     public class ChannelsController : Controller
     {
-        private SelfEduContext db = new SelfEduContext();
-        private ApplicationDbContext AppDb = new ApplicationDbContext();
+        private SelfEduContext db = SelfEduContext.Create();
+        //private ApplicationDbContext AppDb = new ApplicationDbContext();
 
         // GET: Channels
         public async Task<ActionResult> Index()
@@ -46,7 +46,7 @@ namespace SelfEduV2.com.Controllers
         public async Task<ActionResult> Details()
         {
             ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
-            int id = user.ChannelId;
+            int id = user.UserChannel.Channel_id;
             if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -76,17 +76,17 @@ namespace SelfEduV2.com.Controllers
             if (ModelState.IsValid)
             {
                 ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
-                if (user.ChannelId == 0)
+                if (user.UserChannel == null)
                 {
                     Channel channel = new Channel();
                     channel.ChannelName = model.ChannelName;
                     channel.Keywords = model.keywords;
 
-                    db.Channels.Add(channel);
-                    var result = await db.SaveChangesAsync();
+                    //db.Channels.Add(channel);
+                    //var result = await db.SaveChangesAsync();
 
-                    if (result > 0 && channel.Channel_id > 0)
-                    {
+                    //if (result > 0 && channel.Channel_id > 0)
+                    //{
                         // Create an instance of the UserManager
                         ApplicationUserManager mngr = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
                         // Get a handle on an ApplicationUser
@@ -96,7 +96,7 @@ namespace SelfEduV2.com.Controllers
                         //AccountController controller = new AccountController();
                         if (user.Id != "0" && user.Id != null)
                         {
-                            user.ChannelId = channel.Channel_id;
+                            user.UserChannel = channel;
                             user.FirstName = model.FirstName;
                             user.SecondName = model.SecondName;
                             user.Country = model.Country;
@@ -110,12 +110,18 @@ namespace SelfEduV2.com.Controllers
                         var result2 = await mngr.UpdateAsync(user);
                         //var success = await controller.BecomeACreator(model, channel.Channel_id, user);
                         //var success = await UserManager.Update(user);
-                        await AppDb.SaveChangesAsync();
+                        await db.SaveChangesAsync();
                          if (result2.Succeeded)
                         {
                             return RedirectToAction("Index", "Home");
                         }
-                    }
+                        else
+                        {
+                            //if fails then remove channel
+                            db.Channels.Remove(channel);
+                            await db.SaveChangesAsync();
+                        }
+                    //}
                     return RedirectToAction("About", "Home");
                 }
                 //this should redirect to channel and should be done in the cshtml but need to figure out how first

@@ -13,6 +13,8 @@ namespace SelfEduV2.com.Models
         [Key]
         public int Channel_id { get; set; }
         [Required]
+        [Index(IsUnique = true)]
+        [StringLength(150)]
         public string ChannelName { get; set; }
         public int SubscriberCount { get; set; }
         [Required]
@@ -20,20 +22,20 @@ namespace SelfEduV2.com.Models
         private ICollection<Video> _VideoCollection;
         private ICollection<Article> _ArticleCollection;
         //not sure if I should store users in this manner
-        private ICollection<string> _SubscribersId;
+        private ICollection<ApplicationUser> _Subscribers;
 
         public Channel()
         {
-            _SubscribersId = new List<string>();
+            _Subscribers = new List<ApplicationUser>();
             _VideoCollection = new List<Video>();
             _ArticleCollection = new List<Article>();
         }
 
-        public virtual ICollection<string> Subscribers {
-            get { return _SubscribersId; }
+        public virtual ICollection<ApplicationUser> Subscribers {
+            get { return _Subscribers; }
             set {
-                    _SubscribersId = value;
-                    SubscriberCount = _SubscribersId.Count;
+                    _Subscribers = value;
+                    SubscriberCount = _Subscribers.Count;
                 }
             
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SelfEduV2.com.Models
 {
@@ -64,6 +65,7 @@ namespace SelfEduV2.com.Models
     public class RegisterViewModel
     {
         [Required]
+        [Index(IsUnique = true)]
         [Display(Name = "*Username")]
         [StringLength(40, ErrorMessage = "Your username must be at least {2} characters long.", MinimumLength = 6)]
         public string UserName { get; set; }

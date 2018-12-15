@@ -25,7 +25,7 @@
             @Html.DisplayNameFor(model => model.Keywords)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ChannelId)
+            @Html.DisplayNameFor(model => model.CreatorChannel.Channel_id)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Views)
@@ -48,7 +48,7 @@
             @Html.DisplayFor(modelItem => item.Keywords)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ChannelId)
+            @Html.DisplayFor(modelItem => item.CreatorChannel.Channel_id)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Views)

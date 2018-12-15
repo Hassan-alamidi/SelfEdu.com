@@ -186,33 +186,7 @@ namespace SelfEduV2.com.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        public async Task<bool> BecomeACreator(RegisterAsACreatorViewModel model, int channelId, ApplicationUser user)
-        {
-           //ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
-
-            if (user.Id != "0" && user.Id != null)
-            {
-                user.ChannelId = channelId;
-                user.FirstName = model.FirstName;
-                user.SecondName = model.SecondName;
-                user.Country = model.Country;
-                user.HomeAddress = model.HomeAddress;
-                if (model.PaymentMethod != null && model.PaymentMethod != "")
-                {
-                    user.PaymentMethod = model.PaymentMethod;
-                }
-
-                ApplicationUserManager manager = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var result = await manager.UpdateAsync(user);
-                if (result.Succeeded)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+       
 
         //
         // GET: /Account/ConfirmEmail

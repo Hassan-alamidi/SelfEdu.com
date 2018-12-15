@@ -90,6 +90,7 @@ textarea {
     position: fixed;
     top: 50px;
     height: 0%;
+    min-width: 200px;
     overflow-y: hidden;
     -webkit-transition: height 1s;
     transition: height 1s;
@@ -100,7 +101,7 @@ textarea {
     }
 
 .topBToggle {
-    height: 150px !important;
+   
     -webkit-transition: height 1s;
     transition: height 1s;
 }
@@ -162,6 +163,63 @@ textarea {
         border-left: 1px solid #ced4da;
         border-radius: 0 8px 8px 0;
     }
+
+
+/*
+    might reimplement this if I get time to style
+.TopVids {
+    width: 150%;
+    check other browsers for compatability with the below
+    height: -webkit-fill-available;
+    height: fill-available;
+    height: -moz-available;
+}*/
+.searchResThumbnail {
+    width: 100%;
+    padding-top: 66.64%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: #585858;
+    border-bottom-style: solid;
+    border-width: 1px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.spotlight-container {
+    border: #585858;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.itemTitle {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 40px;
+}
+
+.videoContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.itemRating{
+    float:right;
+    padding-right:20px;
+}
+
+.NoPadding {
+    padding: 0 !important;
+}
+
+@media (max-width: 1300px) {
+    #userdropdown {
+        margin-left: -30px;
+    }
+}
 
 @media (max-width: 991px) {
     .fileInputContainer {

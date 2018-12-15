@@ -17,10 +17,10 @@ namespace SelfEduV2.com.Controllers
 {
     public class VideosController : Controller
     {
-        private SelfEduContext db = new SelfEduContext();
-        private string userContentLocation = "/userContent/{0}/videos/thumbnails";
-        private string vFileLocation = "/userContent/{0}/videos/";
-        private string tFileLocation = "/userContent/{0}/videos/thumbnails/";
+        private SelfEduContext db = SelfEduContext.Create();
+        private const string NetworkRoot = "C:/Users/haala/source/repos/SelfEduV2.com/SelfEduV2.com";
+        private const string vFileLocation = "/userContent/{0}/videos/";
+        private const string tFileLocation = "/userContent/{0}/videos/thumbnails/";
         // GET: Videos
         public async Task<ActionResult> Index()
         {
@@ -56,14 +56,15 @@ namespace SelfEduV2.com.Controllers
         public async Task<ActionResult> Create([Bind(Include = "Title,Description,Keywords,Thumbnail,Video")] UploadVideoViewModel val)
         {
 
-            Video vid = new Video();
+            
             if (ModelState.IsValid)
             {
-                ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
+                //ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
+                ApplicationUser user = db.Users.Find(User.Identity.GetUserId());
                 if (user.Id != null)
                 {
-                    int channelId = user.ChannelId;
-
+                    Channel channel = user.UserChannel;
+                    int channelId = channel.Channel_id;
                     if (channelId > 0)
                     {
                         HttpPostedFileBase thumbnail = val.Thumbnail;
@@ -79,24 +80,30 @@ namespace SelfEduV2.com.Controllers
                                 video.ContentType == "video/x - msvideo")
                             {
 
-
+                                
                                 string thumbnailPath = string.Format(tFileLocation, channelId);
                                 //create path if doesn't already exist
-                                Directory.CreateDirectory(thumbnailPath);
-
-                                string videoPath = System.Web.HttpContext.Current.Server.MapPath(string.Format(vFileLocation, channelId) + video.FileName);
-                                thumbnailPath = System.Web.HttpContext.Current.Server.MapPath(thumbnailPath + thumbnail.FileName);
+                                Directory.CreateDirectory(Server.MapPath(thumbnailPath));
+                                thumbnailPath += thumbnail.FileName;
+                                System.Diagnostics.Debug.WriteLine(Server.MapPath(thumbnailPath));
+                                string videoPath = string.Format(vFileLocation, channelId) + video.FileName;
+                                string rootVideoPath = System.Web.HttpContext.Current.Server.MapPath(videoPath);
+                                string rootThumbnailPath = System.Web.HttpContext.Current.Server.MapPath(thumbnailPath);
                                 //populate the video model with data
+
+                                Video vid = new Video();
                                 vid.Title = val.Title;
                                 vid.Description = val.Description;
                                 vid.Keywords = val.Keywords;
                                 vid.FilePath = videoPath;
                                 vid.ThumbnailPath = thumbnailPath;
+                                vid.CreatorChannel = channel;
+                                
 
                                 db.Videos.Add(vid);
                                 await db.SaveChangesAsync();
-                                video.SaveAs(videoPath);
-                                thumbnail.SaveAs(thumbnailPath);
+                                video.SaveAs(rootVideoPath);
+                                thumbnail.SaveAs(rootThumbnailPath);
                                 return RedirectToAction("Index");
                             }
                         }

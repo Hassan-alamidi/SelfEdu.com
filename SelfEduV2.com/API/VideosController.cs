@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Data;
 using System.Data.Entity;
@@ -17,30 +18,72 @@ using System.Web.Http.Description;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using SelfEduV2.com.Models;
+using SelfEduV2.com.Models.DTOs;
 
 namespace SelfEduV2.com.API
 {
     public class VideosController : ApiController
     {
-        private SelfEduContext db = new SelfEduContext();
+        private SelfEduContext db = SelfEduContext.Create();
 
         // GET: api/Videos
-        public IQueryable<Video> GetVideos()
+        public IQueryable<VideoDTO> GetPopularVideos()
         {
-            return db.Videos;
+
+            var vids = (from v in db.Videos orderby v.OverAllRating descending
+                        select new VideoDTO
+                        {
+                            Video_id = v.Video_id,
+                            ThumbnailPath = v.ThumbnailPath,
+                            Title = v.Title,
+                            ChannelId = v.CreatorChannel.Channel_id,
+                            Views = v.Views,
+                            OverAllRating = v.OverAllRating
+                       } ).Take(6);
+            
+            return vids;
         }
 
         // GET: api/Videos/5
-        [ResponseType(typeof(Video))]
-        public async Task<IHttpActionResult> GetVideo(int id)
+        [ResponseType(typeof(VideoDTO))]
+        public async Task<VideoDTO> GetVideo(int id)
         {
-            Video video = await db.Videos.FindAsync(id);
-            if (video == null)
-            {
-                return NotFound();
+            Video v = await db.Videos.FindAsync(id);
+            if (v == null) {
+                return null;
             }
+            VideoDTO video = new VideoDTO
+            {
+                Video_id = id,
+                Title = v.Title,
+                Keywords = v.Keywords,
+                Views = v.Views,
+                Like = v.Ratings.Count(R => R.IsLike = true),
+                Dislike = v.Ratings.Count(R => R.IsLike = false),
+                CreatorChannel = v.CreatorChannel,
+                Videos = v.CreatorChannel.VideoCollection.Select(Vid => new VideoDTO() {
+                    Video_id = Vid.Video_id,
+                    ThumbnailPath = Vid.ThumbnailPath,
+                    Title = Vid.Title,
+                    Views = Vid.Views,
+                    OverAllRating = Vid.OverAllRating
+                }).Take(10).ToList(),
+                Comments = v.Comments.Select(C => new CommentDTO() {
+                    Id = C.Id,
+                    Comment = C.Comment,
+                    UserId = C.UserId,
+                    Replies = C.Replies.Select(R => new CommentDTO()
+                    {
+                        Id = R.Id,
+                        Comment = R.Comment,
+                        UserId = R.UserId
+                }).ToList()
 
-            return Ok(video);
+                }).ToList()
+
+            };
+
+            return video;
         }
 
         // PUT: api/Videos/5
@@ -78,47 +121,7 @@ namespace SelfEduV2.com.API
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Videos
-        [HttpPost]
-        public async Task<IHttpActionResult> PostVideo(FormDataCollection coll)
-        {
-            //Request.Files[0] as HttpPostedFileBase;
-            //var httpRequest = HttpContext.Current.Request.
-
-            //string s = HttpContext.Current.Request.Params.Get("title");
-            
-            string b = coll.Get("title");
-            string s = HttpContext.Current.Request.Form["title"];
-            /*
-            //MUST redo as I am using a formData not the model
-            var user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
-            var chanId = user.ChannelId;
-
-            if (user.Id != null && chanId > 0)
-            {
-                Video videoM = new Video();
-                videoM.Title = title;
-                videoM.Description = description;
-                videoM.Keywords = keywords;
-                videoM.ChannelId = chanId;
-                videoM.FilePath = "";//need to create the file path
-                var thumbnailImg = thumbnail;
-                var videoImg = video;
-
-                if (!ModelState.IsValid)
-                {
-                    return Json(new { message = "failed"});
-                    //return CreatedAtRoute("message", new { me = ""}, Json);
-                }
-
-                db.Videos.Add(videoM);
-                await db.SaveChangesAsync();
-                return Json(new { message = "worked" });
-                //return CreatedAtRoute("DefaultApi", new { id = videoM.Video_id }, videoM);
-            }*/
-            return Json(new { message = s });
-        }
-
+        
         // DELETE: api/Videos/5
         [ResponseType(typeof(Video))]
         public async Task<IHttpActionResult> DeleteVideo(int id)

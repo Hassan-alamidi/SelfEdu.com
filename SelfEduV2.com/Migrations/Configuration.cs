@@ -5,14 +5,14 @@ namespace SelfEduV2.com.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SelfEduV2.com.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<SelfEduV2.com.Models.SelfEduContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(SelfEduV2.com.Models.ApplicationDbContext context)
+        protected override void Seed(SelfEduV2.com.Models.SelfEduContext context)
         {
             //  This method will be called after migrating to the latest version.
 

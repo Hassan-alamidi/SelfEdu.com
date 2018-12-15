@@ -5,63 +5,69 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Video</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FilePath)
-        </dt>
+<div class="row videoContainer">
 
-        <dd>
-            @Html.DisplayFor(model => model.FilePath)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
+    <video width="850" height="480" controls>
+        <source src="@Model.FilePath" type="video/mp4" />
+        <source src="@Model.FilePath" type="video/x-ms-wmv" />
+        <source src="@Model.FilePath" type="video/mpeg" />
+    </video>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Keywords)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Keywords)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ChannelId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ChannelId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Views)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Views)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Video_id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<hr />
+<div class="row" data-toggle="collapse" data-target="#collapseExample">
+
+    <div class="col-sm-6">
+        <h4>@Model.Title</h4>
+        <!--Use dto for rating to get overall likes and dislikes-->
+        <h4>@Model.OverAllRating</h4>
+
+    </div>
+
+    <div class="col-sm-6 text-right">
+        <h4>@Model.CreatorChannel.ChannelName</h4>
+        <h4>@Model.Views</h4>
+
+    </div>
+
+</div>
+<div class="row text-center" data-toggle="collapse" data-target="#collapseExample">
+    <h6>More Details</h6>
+</div>
+<div class="row collapse" id="collapseExample">
+    <div class="container">
+        <div class="row">
+
+            <h4>@Html.DisplayNameFor(model => model.Description): </h4>
+        </div>
+        <div class="row">
+            <p>@Html.DisplayFor(model => model.Description)</p>
+        </div>
+        <div class="row">
+            <h4>@Html.DisplayNameFor(model => model.Keywords): </h4>
+            <p>@Html.DisplayFor(model => model.Keywords)</p>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8">
+        <!--display comments here-->
+        <script></script>
+    </div>
+    <div class="col-sm-4">
+        <!--display users other videos-->
+    </div>
+
+</div>
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/CustomScripts/AjaxRequest.js")"></script>
+    <script src="@Url.Content("~/Scripts/CustomScripts/VideoPGScript.js")"></script>
+    <script>
+        $(document).ready(function () {
+            getAllVideoDetails(@Model.Video_id);
+        });
+    </script>
+}

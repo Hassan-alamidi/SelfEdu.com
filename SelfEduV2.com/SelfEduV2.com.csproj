@@ -201,6 +201,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\CommentsController.cs" />
     <Compile Include="API\VideosController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -213,6 +214,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\VideosController.cs" />
+    <Compile Include="Extensions\UserExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -276,12 +278,75 @@
     <Compile Include="Migrations\201812082337118_add_ThumbnailPath.Designer.cs">
       <DependentUpon>201812082337118_add_ThumbnailPath.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812100936236_Restrictions_added.cs" />
+    <Compile Include="Migrations\201812100936236_Restrictions_added.Designer.cs">
+      <DependentUpon>201812100936236_Restrictions_added.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812100941492_Restrictions_addedV2.cs" />
+    <Compile Include="Migrations\201812100941492_Restrictions_addedV2.Designer.cs">
+      <DependentUpon>201812100941492_Restrictions_addedV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812100943209_Restrictions_addedtest.cs" />
+    <Compile Include="Migrations\201812100943209_Restrictions_addedtest.Designer.cs">
+      <DependentUpon>201812100943209_Restrictions_addedtest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812100944432_Restrictions_addedV2_reimplemented.cs" />
+    <Compile Include="Migrations\201812100944432_Restrictions_addedV2_reimplemented.Designer.cs">
+      <DependentUpon>201812100944432_Restrictions_addedV2_reimplemented.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812102241040_AddClaim.cs" />
+    <Compile Include="Migrations\201812102241040_AddClaim.Designer.cs">
+      <DependentUpon>201812102241040_AddClaim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111602369_addOverAllRating.cs" />
+    <Compile Include="Migrations\201812111602369_addOverAllRating.Designer.cs">
+      <DependentUpon>201812111602369_addOverAllRating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111630499_RemoveUniqueFromPaths.cs" />
+    <Compile Include="Migrations\201812111630499_RemoveUniqueFromPaths.Designer.cs">
+      <DependentUpon>201812111630499_RemoveUniqueFromPaths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131221119_modelImprovements.cs" />
+    <Compile Include="Migrations\201812131221119_modelImprovements.Designer.cs">
+      <DependentUpon>201812131221119_modelImprovements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131413128_smallUpdate.cs" />
+    <Compile Include="Migrations\201812131413128_smallUpdate.Designer.cs">
+      <DependentUpon>201812131413128_smallUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131432091_tryagain.cs" />
+    <Compile Include="Migrations\201812131432091_tryagain.Designer.cs">
+      <DependentUpon>201812131432091_tryagain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131505598_anotherfix.cs" />
+    <Compile Include="Migrations\201812131505598_anotherfix.Designer.cs">
+      <DependentUpon>201812131505598_anotherfix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131550168_plswork.cs" />
+    <Compile Include="Migrations\201812131550168_plswork.Designer.cs">
+      <DependentUpon>201812131550168_plswork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131750003_whyyyy.cs" />
+    <Compile Include="Migrations\201812131750003_whyyyy.Designer.cs">
+      <DependentUpon>201812131750003_whyyyy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812131826549_willitfail.cs" />
+    <Compile Include="Migrations\201812131826549_willitfail.Designer.cs">
+      <DependentUpon>201812131826549_willitfail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812141810440_misteriousUpdate.cs" />
+    <Compile Include="Migrations\201812141810440_misteriousUpdate.Designer.cs">
+      <DependentUpon>201812141810440_misteriousUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\ChannelModel.cs" />
     <Compile Include="Models\ChannelViewModel.cs" />
     <Compile Include="Models\CommentsModel.cs" />
+    <Compile Include="Models\DTOs\ChannelDTO.cs" />
+    <Compile Include="Models\DTOs\CommentDTO.cs" />
+    <Compile Include="Models\DTOs\VideoDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RatingModel.cs" />
@@ -311,6 +376,8 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\CustomScripts\HomePGScript.js" />
+    <Content Include="Scripts\CustomScripts\VideoPGScript.js" />
     <Content Include="SelfEduV2.manifest">
       <SubType>Designer</SubType>
     </Content>
@@ -319,7 +386,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\CustomScripts\FileUpload.js" />
+    <Content Include="Scripts\CustomScripts\AjaxRequest.js" />
     <Content Include="Scripts\CustomScripts\NavigationBars.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -439,6 +506,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812082337118_add_ThumbnailPath.resx">
       <DependentUpon>201812082337118_add_ThumbnailPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812100936236_Restrictions_added.resx">
+      <DependentUpon>201812100936236_Restrictions_added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812100941492_Restrictions_addedV2.resx">
+      <DependentUpon>201812100941492_Restrictions_addedV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812100943209_Restrictions_addedtest.resx">
+      <DependentUpon>201812100943209_Restrictions_addedtest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812100944432_Restrictions_addedV2_reimplemented.resx">
+      <DependentUpon>201812100944432_Restrictions_addedV2_reimplemented.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812102241040_AddClaim.resx">
+      <DependentUpon>201812102241040_AddClaim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111602369_addOverAllRating.resx">
+      <DependentUpon>201812111602369_addOverAllRating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111630499_RemoveUniqueFromPaths.resx">
+      <DependentUpon>201812111630499_RemoveUniqueFromPaths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131221119_modelImprovements.resx">
+      <DependentUpon>201812131221119_modelImprovements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131413128_smallUpdate.resx">
+      <DependentUpon>201812131413128_smallUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131432091_tryagain.resx">
+      <DependentUpon>201812131432091_tryagain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131505598_anotherfix.resx">
+      <DependentUpon>201812131505598_anotherfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131550168_plswork.resx">
+      <DependentUpon>201812131550168_plswork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131750003_whyyyy.resx">
+      <DependentUpon>201812131750003_whyyyy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812131826549_willitfail.resx">
+      <DependentUpon>201812131826549_willitfail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812141810440_misteriousUpdate.resx">
+      <DependentUpon>201812141810440_misteriousUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

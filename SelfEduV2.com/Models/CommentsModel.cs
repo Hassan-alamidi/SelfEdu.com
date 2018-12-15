@@ -13,8 +13,10 @@ namespace SelfEduV2.com.Models
         public string Comment { get; set; }
         //like to dislike rating is slightly different than video and article rating
         //if someone presses like then rating++ else if someone dislike rating--
+        //it is done in this mannor because we do not need a deep level of granularity
         public int Rating { get; set; }
         private ICollection<UserComments> _Replies;
+        //NOTE might change this to ApplicationUser if I make a user profile page
         private int _userId;
 
         public int UserId
