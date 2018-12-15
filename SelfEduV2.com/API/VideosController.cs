@@ -52,6 +52,7 @@ namespace SelfEduV2.com.API
             if (v == null) {
                 return null;
             }
+            Channel chan = v.CreatorChannel;
             VideoDTO video = new VideoDTO
             {
                 Video_id = id,
@@ -60,8 +61,11 @@ namespace SelfEduV2.com.API
                 Views = v.Views,
                 Like = v.Ratings.Count(R => R.IsLike = true),
                 Dislike = v.Ratings.Count(R => R.IsLike = false),
-                CreatorChannel = v.CreatorChannel,
-                Videos = v.CreatorChannel.VideoCollection.Select(Vid => new VideoDTO() {
+                CreatorChannel = new ChannelDTO() {
+                    Id = chan.Channel_id,
+                    ChannelName = chan.ChannelName,
+                    },
+                Videos = chan.VideoCollection.Select(Vid => new VideoDTO() {
                     Video_id = Vid.Video_id,
                     ThumbnailPath = Vid.ThumbnailPath,
                     Title = Vid.Title,

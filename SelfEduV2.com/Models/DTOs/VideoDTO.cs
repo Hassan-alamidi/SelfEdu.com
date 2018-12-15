@@ -27,7 +27,7 @@ namespace SelfEduV2.com.Models.DTOs
         //need a better way of setting this up
         //find way to store identity into this
         public int ChannelId { get; set; }
-        public Channel CreatorChannel { get; set; }
+        public ChannelDTO CreatorChannel { get; set; }
         public string ChannelName { get; set; }
         
 
