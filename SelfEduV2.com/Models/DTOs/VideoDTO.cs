@@ -14,6 +14,7 @@ namespace SelfEduV2.com.Models.DTOs
         public string ThumbnailPath { get; set; }
         public string Keywords { get; set; }
         public int Views { get; set; }
+        public DateTime Date { get; set; }
         //video rating
         public int OverAllRating{ get; set;}
         public List<Rating> Ratings { get; set; }

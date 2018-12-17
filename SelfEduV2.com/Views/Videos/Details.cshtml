@@ -1,5 +1,4 @@
 ﻿@model SelfEduV2.com.Models.Video
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -58,14 +57,20 @@
 <div class="row secondaryContent">
     <div class="col-sm-9">
         <div class="container-fluid" id="userComments">
-            <div class="row">
-                <button type="button" class="btn btn-dark btn-lg center-block" data-toggle="collapse" data-target="#commentFormCont">Leave Comment</button>
-            </div>
-            <div class="row collapse" id="commentFormCont">
-                <textarea class="form-control" rows="5" id="commentTextbox" placeholder="Please Enter your comment here"></textarea>
-                <button type="button" class="btn btn-dark" id="commentSubmit" data-toggle="collapse" data-target="#commentFormCont">Submit</button>
-            </div>
-
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="row">
+                    <button type="button" class="btn btn-dark btn-lg center-block" data-toggle="collapse" data-target="#commentFormCont">Leave Comment</button>
+                </div>
+                <div class="row collapse" id="commentFormCont">
+                    <textarea class="form-control" rows="5" id="commentTextbox" placeholder="Please Enter your comment here"></textarea>
+                    <button type="button" class="btn btn-dark" id="commentSubmit" data-toggle="collapse" data-target="#commentFormCont">Submit</button>
+                </div>
+            }
+            else
+            {
+                <h4 class="center-block">Login to Leave Comment</h4>
+            }
             <!--display comments here-->
             <div class="container-fluid" id="commentsOnVideo">
             </div>
@@ -83,13 +88,22 @@
 @section Scripts{
     <script src="@Url.Content("~/Scripts/CustomScripts/AjaxRequest.js")"></script>
     <script src="@Url.Content("~/Scripts/CustomScripts/VideoPGScript.js")"></script>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script>var loggedIn = true;</script>
+    }
+    else
+    {
+        <script>var loggedIn = false;</script>
+    }
     <script>
         $(document).ready(function () {
 
             $('#commentSubmit').on('click', function () {
                 postComment();
             });
-            getAndSetDetails(@Model.Video_id);
+
+            getAndSetDetails(@Model.Video_id, loggedIn);
         });
     </script>
 }

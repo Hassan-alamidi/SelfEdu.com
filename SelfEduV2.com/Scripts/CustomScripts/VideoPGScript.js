@@ -1,17 +1,24 @@
 ﻿var videoId;
 var videoDetails
-function getAndSetDetails(id) {
+var isUserLoggedIn
+function getAndSetDetails(id, userLogged) {
     //set details of currently viewed details
     videoId = id;
+    isUserLoggedIn = userLogged;
     //get details relating to the current video
     selectRequest("VideoDetails", displayRelatedVideos, id);
    
 }
 
-function postComment() {
-    var commentSub = document.getElementById('commentTextbox').value;
-    alert(videoDetails.Title);
-    var commentDTO = { Comment: commentSub, Video_id: videoId };
+function postComment(commentId = -1, commentNum = -1) {
+    //if commentId equals -1 then this is a comment on a video else it is a reply to a comment
+    if (commentId === -1) {
+        var commentSub = document.getElementById('commentTextbox').value;
+    } else {
+        var commentSub = document.getElementById('commentTextbox' + commentNum).value;
+        alert(commentSub);
+    }
+    var commentDTO = { Id: commentId ,Comment: commentSub, Video_id: videoId };
     selectRequest("PostComment", commentResult, commentDTO);
 }
 
@@ -26,11 +33,31 @@ function displayComments() {
     var html = "";
     var count = videoDetails.Comments.length;
     for (var i = 0; i < count; i++) {
-        html += '<div class="row vert_padding"> <div class="container-fluid"><div class="row">';
-        html += '<h3>' + videoDetails.Comments[i].UserName + '</h3></div>';
-        html += '<div class="row">';
-        html += '<p>' + videoDetails.Comments[i].Comment + '</p>';
-        html += '</div></div></div>';
+        //extract the date from the value
+        var date = videoDetails.Comments[i].Date.split(" ");
+        html += '<div class="row vert_padding "> <div class="container-fluid commentContainer"><div class="row padding-left">';
+        html += '<div class="col-xs-6"><h4>' + videoDetails.Comments[i].UserName + '</h4></div><div class="col-xs-6"><h6>Posted: ' + date[0] + '</h6></div></div>';
+        html += '<hr/><div class="row padding-left">';
+        html += '<div class="col-xs-10"><p>' + videoDetails.Comments[i].Comment + '</p></div>';
+        if (isUserLoggedIn) {
+            html += '<div class="col-xs-2" data-toggle="collapse" data-target="#commentFormCont' + i + '"><a>Reply</a></div>';
+        }
+        html += '</div>';
+        html += '<div class="row collapse" id="commentFormCont' + i + '"><textarea class="form-control" rows = "5" id = "commentTextbox' + i + '" placeholder = "Please Enter your comment here"></textarea>';
+        html += '<button type="button" class="btn btn-dark" onclick="postComment(' + videoDetails.Comments[i].Id + ', ' + i + ')" id="commentSubmit" data-toggle="collapse" data-target="#commentFormCont' + i + '">Submit</button></div>';
+        var replyCount = videoDetails.Comments[i].Replies.length;
+        for (var j = 0; j < replyCount; j++) {
+            html += '<hr class="commentSeperator" />';
+            var Rdate = videoDetails.Comments[i].Replies[j].Date.split(" ");
+            html += '<div class="row padding-far-left">';
+            html += '<div class="col-xs-6"><h4>' + videoDetails.Comments[i].Replies[j].UserName + '</h4></div><div class="col-xs-6"><h6>Posted: ' + Rdate[0] + '</h6></div></div>';
+            html += '<hr/><div class="row padding-far-left">';
+            html += '<div class="col-xs-10"><p>' + videoDetails.Comments[i].Replies[j].Comment + '</p></div>';
+            html += '</div>';
+        }
+       
+        html += '</div ></div>';
+        
     }
     $('#commentsOnVideo').append(html);
 }

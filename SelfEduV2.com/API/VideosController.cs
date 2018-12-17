@@ -76,11 +76,13 @@ namespace SelfEduV2.com.API
                     Id = C.Id,
                     Comment = C.Comment,
                     UserName = C.UserName,
+                    Date = C.Date.Date.ToString(),
                     Replies = C.Replies.Select(R => new CommentDTO()
                     {
                         Id = R.Id,
                         Comment = R.Comment,
-                        UserName = R.UserName
+                        UserName = R.UserName,
+                        Date = R.Date.Date.ToString()
                 }).ToList()
 
                 }).ToList()

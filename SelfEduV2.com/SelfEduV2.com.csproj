@@ -354,6 +354,22 @@
     <Compile Include="Migrations\201812170213473_smallTweak.Designer.cs">
       <DependentUpon>201812170213473_smallTweak.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812171535377_commentDate.cs" />
+    <Compile Include="Migrations\201812171535377_commentDate.Designer.cs">
+      <DependentUpon>201812171535377_commentDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812171540553_DateAddedForVideo.cs" />
+    <Compile Include="Migrations\201812171540553_DateAddedForVideo.Designer.cs">
+      <DependentUpon>201812171540553_DateAddedForVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812171619475_notsure1.cs" />
+    <Compile Include="Migrations\201812171619475_notsure1.Designer.cs">
+      <DependentUpon>201812171619475_notsure1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812171927223_crap.cs" />
+    <Compile Include="Migrations\201812171927223_crap.Designer.cs">
+      <DependentUpon>201812171927223_crap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleModel.cs" />
@@ -579,6 +595,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812170213473_smallTweak.resx">
       <DependentUpon>201812170213473_smallTweak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812171535377_commentDate.resx">
+      <DependentUpon>201812171535377_commentDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812171540553_DateAddedForVideo.resx">
+      <DependentUpon>201812171540553_DateAddedForVideo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812171619475_notsure1.resx">
+      <DependentUpon>201812171619475_notsure1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812171927223_crap.resx">
+      <DependentUpon>201812171927223_crap.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

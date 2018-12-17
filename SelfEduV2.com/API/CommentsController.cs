@@ -87,12 +87,29 @@ namespace SelfEduV2.com.API
                 return BadRequest(ModelState);
             }
 
-            UserComments userComment = new UserComments {
-                Comment = commentDTO.Comment,
-                UserName = User.Identity.Name
-            };
-            var video = db.Videos.Find(vidId);
-            video.Comments.Add(userComment);
+            //if the user comment is equal to minus 1 then it is a comment on a video
+            //else if the id is greater than 0 then it is a reply to a comment
+            if (commentDTO.Id == -1)
+            {
+                UserComments userComment = new UserComments
+                {
+                    Comment = commentDTO.Comment,
+                    UserName = User.Identity.Name
+                };
+                var video = db.Videos.Find(vidId);
+                video.Comments.Add(userComment);
+            }
+            else {
+                UserComments userComment = new UserComments
+                {
+                    Comment = commentDTO.Comment,
+                    UserName = User.Identity.Name
+                };
+
+                var comment = db.UserComments.Find(commentDTO.Id);
+                comment.Replies.Add(userComment);
+            }
+            
             await db.SaveChangesAsync();
             
             return Ok("success");

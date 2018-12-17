@@ -11,6 +11,7 @@ namespace SelfEduV2.com.Models
         [Key]
         public int Id { get; set; }
         public string Comment { get; set; }
+        public DateTime Date { get; set; }
         //like to dislike rating is slightly different than video and article rating
         //if someone presses like then rating++ else if someone dislike rating--
         //it is done in this mannor because we do not need a deep level of granularity
@@ -19,6 +20,12 @@ namespace SelfEduV2.com.Models
         //NOTE might change this to ApplicationUser if I make a user profile page
         private string _userName;
 
+        public UserComments()
+        {
+            Date = DateTime.Now;
+            _Replies = new List<UserComments>();
+        }
+
         public string UserName
         {
             get { return _userName; }
@@ -26,12 +33,6 @@ namespace SelfEduV2.com.Models
             {
                 _userName = value;
             }
-        }
-     
-
-        public UserComments()
-        {
-            _Replies = new List<UserComments>();
         }
 
         public virtual ICollection<UserComments> Replies

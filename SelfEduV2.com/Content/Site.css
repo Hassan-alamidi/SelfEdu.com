@@ -220,19 +220,54 @@ textarea {
     padding-bottom:20px;
 }
 
+.padding-left {
+    padding-left: 20px;
+}
+
+    .padding-left p {
+        padding-left:50px;
+    }
+
+.padding-far-left {
+    padding-left: 50px;
+}
+
+    .padding-far-left p {
+        padding-left: 80px;
+    }
+
+hr {
+    margin-top: 4px;
+    margin-bottom:4px;
+}
+
+.commentSeperator {
+    border-top: 1px solid #0a0a0a;
+}
+
 .secondaryContent {
     padding-top: 30px;
 }
 
 .btn-lg {
-    width:50%;
+    width: 50%;
+    margin-bottom: 20px;
 }
 
-#commentTextbox {
+.commentContainer {
+    box-shadow: 4px 3px 6px 0px grey;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #b7b7b7;
+    padding-left: 20px;
+}
+
+textarea[id^="commentTextbox"] {
     margin-top: 20px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     max-width: 100%;
-    background-color:#eae3e3;
+    background-color: #eae3e3;
 }
 
 @media (max-width: 1300px) {

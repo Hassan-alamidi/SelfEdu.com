@@ -31,11 +31,13 @@ namespace SelfEduV2.com.Models
         private Channel _CreatorChannel;
         public int Views { get; set; }
         public int OverAllRating { get; set; }
+        public DateTime Date { get; set; }
         private ICollection<Rating> _Ratings;
         private ICollection<UserComments> _Comments;
 
         public Video()
         {
+            Date = DateTime.Now;
             _Comments = new List<UserComments>();
             _Ratings = new List<Rating>();
         }
