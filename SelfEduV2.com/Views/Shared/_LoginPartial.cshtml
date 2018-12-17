@@ -12,22 +12,17 @@
     {
         @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-inverse" id="userdropdown">
-        @if (User.Identity.HasChannel())
-        {
-            <!--will try implement style in javascript later-->
-            <style>
-                .topBToggle {
-                    height: 200px !important;
-                }
-            </style>
-            <li>@Html.ActionLink("Channel", "Details", "Channels", routeValues: null, htmlAttributes: new { title = "Channel" })</li>
-            <li>@Html.ActionLink("Upload Video", "Create", "Videos", routeValues: null, htmlAttributes: new { title = "Video upload" })</li>
-        }
-        <li>@Html.ActionLink("Manage Account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <ul class="nav navbar-nav navbar-inverse" id="userdropdown">
 
-    </ul>
+            @if (User.Identity.HasChannel())
+            {
+                <li>@Html.ActionLink("Channel", "Details", "Channels", routeValues: null, htmlAttributes: new { title = "Channel" })</li>
+                <li>@Html.ActionLink("Upload Video", "Create", "Videos", routeValues: null, htmlAttributes: new { title = "Video upload" })</li>
+            }
+            <li>@Html.ActionLink("Manage Account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+
+        </ul>
 
     }
 }
@@ -37,4 +32,21 @@ else
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
+}
+
+@if (User.Identity.HasChannel())
+{
+    <style>
+        .topBToggle {
+            height: 200px !important;
+        }
+    </style>
+}
+else
+{
+    <style>
+        .topBToggle {
+            height: 100px !important;
+        }
+    </style>
 }

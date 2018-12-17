@@ -7,8 +7,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using SelfEduV2.com.Models;
 using SelfEduV2.com.Models.DTOs;
 
@@ -74,17 +77,25 @@ namespace SelfEduV2.com.API
 
         // POST: api/Comments
         [ResponseType(typeof(CommentDTO))]
-        public async Task<IHttpActionResult> PostCommentDTO(CommentDTO commentDTO)
+        public async Task<IHttpActionResult> PostCommentDTO([FromBody] CommentDTO commentDTO)
         {
+            
+            var vidId = commentDTO.Video_id;
+           
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.CommentDTOes.Add(commentDTO);
+            UserComments userComment = new UserComments {
+                Comment = commentDTO.Comment,
+                UserName = User.Identity.Name
+            };
+            var video = db.Videos.Find(vidId);
+            video.Comments.Add(userComment);
             await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = commentDTO.Id }, commentDTO);
+            
+            return Ok("success");
         }
 
         // DELETE: api/Comments/5

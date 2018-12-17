@@ -1,4 +1,4 @@
-﻿var fData = new FormData();
+﻿var data;
 var URL, reqtype;
 var response;
 $(document).ready(function () {
@@ -11,17 +11,24 @@ $(document).ready(function () {
     })*/
 });
 
-function selectRequest(selection, callback, id) {
+function selectRequest(selection, callback, vals) {
     switch (selection) {
         case "topRated":
             URL = "/api/Videos";
             retype = "GET";
-
+            data = "";
             break;
         case "VideoDetails":
-            URL = "/api/Videos/" + id;
+            URL = "/api/Videos/" + vals;
             retype = "GET";
+            data = "";
             break;
+        case "PostComment":
+            URL = "/api/Comments";
+            retype = "POST";
+            data = vals;
+            break;
+        
         default:
             alert("request not setup");
             break;
@@ -36,8 +43,9 @@ function BeginRequest(callback) {
     $.ajax({
         type: retype,
         url: URL,
-        //data:fData,
+        data:data,
         dataType: "json",
+        contentType: 'application/x-www-form-urlencoded',
         success: function (resp, statusText, xhr) {
 
             

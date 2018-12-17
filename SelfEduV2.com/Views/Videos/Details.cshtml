@@ -17,7 +17,7 @@
 
 </div>
 <hr />
-<div class="row" data-toggle="collapse" data-target="#collapseExample">
+<div class="row" data-toggle="collapse" data-target="#moreDetails">
 
     <div class="col-sm-6">
         <h4>@Model.Title</h4>
@@ -33,10 +33,10 @@
     </div>
 
 </div>
-<div class="row text-center" data-toggle="collapse" data-target="#collapseExample">
+<div class="row text-center" data-toggle="collapse" data-target="#moreDetails">
     <h6>More Details</h6>
 </div>
-<div class="row collapse" id="collapseExample">
+<div class="row collapse" id="moreDetails">
     <div class="container">
         <div class="row">
 
@@ -52,22 +52,44 @@
 
     </div>
 </div>
-<div class="row">
-    <div class="col-sm-8">
-        <!--display comments here-->
-        <script></script>
+
+
+
+<div class="row secondaryContent">
+    <div class="col-sm-9">
+        <div class="container-fluid" id="userComments">
+            <div class="row">
+                <button type="button" class="btn btn-dark btn-lg center-block" data-toggle="collapse" data-target="#commentFormCont">Leave Comment</button>
+            </div>
+            <div class="row collapse" id="commentFormCont">
+                <textarea class="form-control" rows="5" id="commentTextbox" placeholder="Please Enter your comment here"></textarea>
+                <button type="button" class="btn btn-dark" id="commentSubmit" data-toggle="collapse" data-target="#commentFormCont">Submit</button>
+            </div>
+
+            <!--display comments here-->
+            <div class="container-fluid" id="commentsOnVideo">
+            </div>
+        </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <!--display users other videos-->
+        <div class="container-fluid" id="videoSuggestions">
+
+        </div>
     </div>
 
 </div>
+
 @section Scripts{
     <script src="@Url.Content("~/Scripts/CustomScripts/AjaxRequest.js")"></script>
     <script src="@Url.Content("~/Scripts/CustomScripts/VideoPGScript.js")"></script>
     <script>
         $(document).ready(function () {
-            getAllVideoDetails(@Model.Video_id);
+
+            $('#commentSubmit').on('click', function () {
+                postComment();
+            });
+            getAndSetDetails(@Model.Video_id);
         });
     </script>
 }

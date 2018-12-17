@@ -75,12 +75,12 @@ namespace SelfEduV2.com.API
                 Comments = v.Comments.Select(C => new CommentDTO() {
                     Id = C.Id,
                     Comment = C.Comment,
-                    UserId = C.UserId,
+                    UserName = C.UserName,
                     Replies = C.Replies.Select(R => new CommentDTO()
                     {
                         Id = R.Id,
                         Comment = R.Comment,
-                        UserId = R.UserId
+                        UserName = R.UserName
                 }).ToList()
 
                 }).ToList()

@@ -30,7 +30,7 @@ namespace SelfEduV2.com.Models
 
         public ApplicationUser()
         {
-            
+           
             //_ChannelId = 0;
             _Subscriptions = new List<Channel>();
             _CommentsMade = new List<UserComments>();

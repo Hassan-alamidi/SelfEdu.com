@@ -99,9 +99,13 @@ namespace SelfEduV2.com.Controllers
                                 vid.ThumbnailPath = thumbnailPath;
                                 vid.CreatorChannel = channel;
                                 
-
                                 db.Videos.Add(vid);
+                                //the below seems to be uneeded as entity framework seems to be doing this for me
+                                //Channel chan = db.Channels.First(c => c.Channel_id == channel.Channel_id);
+                                //chan.VideoCollection.Add(vid);
+
                                 await db.SaveChangesAsync();
+                                
                                 video.SaveAs(rootVideoPath);
                                 thumbnail.SaveAs(rootThumbnailPath);
                                 return RedirectToAction("Index");

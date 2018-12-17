@@ -27,8 +27,19 @@
             @Html.DisplayFor(model => model.SubscriberCount)
         </dd>
 
-
-
     </dl>
+    
 </div>
+@foreach (var vid in Model.VideoCollection)
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelVid => vid.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelVid => vid.Video_id)
+    </td>
+</tr>
+}
+
 

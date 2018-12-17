@@ -12,9 +12,10 @@ namespace SelfEduV2.com.Models.DTOs
         public int Rating { get; set; }
         //NOTE if things go wrong check to see if issue is due to storage of its own model within its self
         public List<CommentDTO> Replies { get; set; }
-        //same as video controller need to figure out how to store user identity in this during 
-        //creation
-        public int UserId { get; set; }
+        
+        public string UserName { get; set; }
+        //reference to video Id
+        public int Video_id { get; set; }
 
     }
 }

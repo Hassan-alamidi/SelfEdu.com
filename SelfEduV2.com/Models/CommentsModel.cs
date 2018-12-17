@@ -17,18 +17,17 @@ namespace SelfEduV2.com.Models
         public int Rating { get; set; }
         private ICollection<UserComments> _Replies;
         //NOTE might change this to ApplicationUser if I make a user profile page
-        private int _userId;
+        private string _userName;
 
-        public int UserId
+        public string UserName
         {
-            get { return _userId; }
+            get { return _userName; }
             set
             {
-                if (_userId > 0) {
-                    _userId = value;
-                }
+                _userName = value;
             }
         }
+     
 
         public UserComments()
         {
