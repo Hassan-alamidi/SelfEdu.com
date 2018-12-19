@@ -6,7 +6,7 @@ function getAndSetDetails(id, userLogged) {
     videoId = id;
     isUserLoggedIn = userLogged;
     //get details relating to the current video
-    selectRequest("VideoDetails", displayRelatedVideos, id);
+    selectRequest("VideoDetails", getAndDisplay, id);
    
 }
 
@@ -26,6 +26,23 @@ function commentResult(data) {
     //this should notify the user that if their comment was successful
     //maybe I could append to the current list
     alert(data);
+}
+
+function getAndDisplay(data) {
+    videoDetails = data;
+    //display related videos
+    displayRelatedVideos();
+    //display comments
+    displayComments();
+    //display likes and dislikes
+    displaylikeAndDislikes();
+}
+
+function displaylikeAndDislikes() {
+    likes = videoDetails.Like;
+    dislikes = videoDetails.Dislike;
+    $('#leftColDetails').append(likes);
+    $('#leftColDetails').append(dislikes);
 }
 
 function displayComments() {
@@ -62,21 +79,20 @@ function displayComments() {
     $('#commentsOnVideo').append(html);
 }
 
-function displayRelatedVideos(data) {
+function displayRelatedVideos() {
     var html = "";
-    var count = data.Videos.length;
-    videoDetails = data;
+    var count = videoDetails.Videos.length;
+    
     for (var i = 0; i < count; i++) {
         
-            html += '<div class="row vert_padding"> <div class="container-fluid spotlight-container"><div class="row popularVideo">';
-            html += '<div class="searchResThumbnail" style="background-image: url(' + data.Videos[i].ThumbnailPath + ');"></div></div>';
-            html += '<div class="row">';
-            html += '<h4 class="itemTitle" >' + data.Videos[i].Title + '</h4><p class="itemRating">' + data.Videos[i].OverAllRating + '</p>';
-            html += '</div></div></div>';
+        html += '<div class="row vert_padding"> <div class="container-fluid spotlight-container"><div class="row popularVideo">';
+        html += '<div class="searchResThumbnail" style="background-image: url(' + videoDetails.Videos[i].ThumbnailPath + ');"></div></div>';
+        html += '<div class="row">';
+        html += '<h4 class="itemTitle" >' + videoDetails.Videos[i].Title + '</h4><p class="itemRating">' + videoDetails.Videos[i].OverAllRating + '</p>';
+        html += '</div></div></div>';
       
     }
-    alert(data.Title);
+    
     $('#videoSuggestions').append(html);
-    //get comments
-    displayComments();
+    
 }

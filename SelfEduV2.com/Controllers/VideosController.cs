@@ -39,6 +39,7 @@ namespace SelfEduV2.com.Controllers
             {
                 return HttpNotFound();
             }
+            
             return View(video);
         }
 

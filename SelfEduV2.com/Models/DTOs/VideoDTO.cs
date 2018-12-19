@@ -11,8 +11,8 @@ namespace SelfEduV2.com.Models.DTOs
         //video details
         public int Video_id { get; set; }
         public string Title { get; set; }
-        public string ThumbnailPath { get; set; }
         public string Keywords { get; set; }
+        public string Description { get; set; }
         public int Views { get; set; }
         public DateTime Date { get; set; }
         //video rating
@@ -31,7 +31,8 @@ namespace SelfEduV2.com.Models.DTOs
         public ChannelDTO CreatorChannel { get; set; }
         public string ChannelName { get; set; }
         
-
+        public string FilePath { get; set; }
+        public string ThumbnailPath { get; set; }
 
 
     }
