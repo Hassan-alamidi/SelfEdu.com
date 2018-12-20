@@ -23,6 +23,27 @@ textarea {
     max-width: 280px;
 }
 
+.vidRating {
+    display: flex;
+    flex-direction: row;
+}
+    .vidRating h4 {
+        padding-left: 20px;
+        padding-right: 10px;
+    }
+#likeBtn {
+    margin-right: 10px;
+    height: 40px;
+    width: 40px;
+    background-repeat: no-repeat;
+    background-image: url(/Content/images/thumbsUp.svg);
+}
+#dislikeBtn {
+    height: 40px;
+    width: 40px;
+    background-repeat: no-repeat;
+    background-image: url(/Content/images/thumbsDown.svg);
+}
 #SideBarBtn {
     float:left !important;
     margin-right:0px !important;

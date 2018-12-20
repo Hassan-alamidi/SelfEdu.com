@@ -41,8 +41,8 @@ function getAndDisplay(data) {
 function displaylikeAndDislikes() {
     likes = videoDetails.Like;
     dislikes = videoDetails.Dislike;
-    $('#leftColDetails').append(likes);
-    $('#leftColDetails').append(dislikes);
+    $('#likeLbl').append(likes);
+    $('#dislikeLbl').append(dislikes);
 }
 
 function displayComments() {

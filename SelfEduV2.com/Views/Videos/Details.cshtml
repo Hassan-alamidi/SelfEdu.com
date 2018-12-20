@@ -19,11 +19,18 @@
 <div class="row" data-toggle="collapse" data-target="#moreDetails">
 
     <div class="col-sm-6" id="leftColDetails" >
-        <h4>@Model.Title</h4>
-        <!--Use dto for rating to get overall likes and dislikes-->
-        <h4>@Model.OverAllRating</h4>
-        
-
+        <div class="container-fluid">
+            <div class="row">
+            <h4>@Model.Title</h4>
+            <!--Use dto for rating to get overall likes and dislikes-->
+            </div>
+            <div class="row vidRating">
+                <h4 id="likeLbl" ></h4>
+                <div id="likeBtn" ></div>
+                <h4 id="dislikeLbl" ></h4>
+                <div id="dislikeBtn" ></div>
+            </div>
+        </div>
     </div>
 
     <div class="col-sm-6 text-right">
