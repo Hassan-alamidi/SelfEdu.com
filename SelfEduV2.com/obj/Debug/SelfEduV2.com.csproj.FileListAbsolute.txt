@@ -323,3 +323,8 @@ E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com
 E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.DateAddedForVideo.resources
 E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.notsure1.resources
 E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.crap.resources
+C:\Users\haala\source\repos\SelfEduV2.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.csprojAssemblyReference.cache
+C:\Users\haala\source\repos\SelfEduV2.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.commentDate.resources
+C:\Users\haala\source\repos\SelfEduV2.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.DateAddedForVideo.resources
+C:\Users\haala\source\repos\SelfEduV2.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.notsure1.resources
+C:\Users\haala\source\repos\SelfEduV2.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.crap.resources
