@@ -35,6 +35,5 @@ namespace SelfEduV2.com.Models
         public DbSet<Rating> UserRatings { get; set; }
         public DbSet<UserComments> UserComments { get; set; }
 
-        public System.Data.Entity.DbSet<SelfEduV2.com.Models.DTOs.CommentDTO> CommentDTOes { get; set; }
     }
 }

@@ -76,9 +76,7 @@ namespace SelfEduV2.com.Controllers
                             thumbnail.ContentType == "image/png")
                         {
                             if (video.ContentType == "video/mp4" ||
-                                video.ContentType == "video/x-ms-wmv" ||
-                                video.ContentType == "video/mpeg" ||
-                                video.ContentType == "video/x - msvideo")
+                                video.ContentType == "video/mpeg")
                             {
 
                                 

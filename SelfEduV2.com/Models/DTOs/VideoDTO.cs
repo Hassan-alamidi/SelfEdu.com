@@ -20,6 +20,8 @@ namespace SelfEduV2.com.Models.DTOs
         public List<Rating> Ratings { get; set; }
         public int Like { get; set; }
         public int Dislike { get; set; }
+        //this lets the page know if the user has already rated this page
+        public string CurrentUserRating { get; set; }
         //video comments
         public List<CommentDTO> Comments { get; set; }
         //this will be used to get some of the users other videos for display purposes

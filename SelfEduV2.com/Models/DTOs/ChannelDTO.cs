@@ -11,6 +11,7 @@ namespace SelfEduV2.com.Models.DTOs
         public string ChannelName { get; set; }
         public int SubscriberCount { get; set; }
         public List<VideoDTO> VideoCollection { get; set; }
-        public List<ApplicationUser> Subscribers { get; set; }
+        public List<UserDTOcs> Subscribers { get; set; }
+        public bool IsCurrentUserSub { get; set; }
     }
 }

@@ -52,15 +52,19 @@ namespace SelfEduV2.com.API
             if (v == null) {
                 return null;
             }
+            string userId = User.Identity.GetUserId();
             Channel chan = v.CreatorChannel;
+
+            
+
             VideoDTO video = new VideoDTO
             {
                 Video_id = id,
                 Title = v.Title,
                 Keywords = v.Keywords,
                 Views = v.Views,
-                Like = v.Ratings.Count(R => R.IsLike = true),
-                Dislike = v.Ratings.Count(R => R.IsLike = false),
+                Like = v.Ratings.Count(R => R.IsLike == true),
+                Dislike = v.Ratings.Count(R => R.IsLike == false),
                 CreatorChannel = new ChannelDTO() {
                     Id = chan.Channel_id,
                     ChannelName = chan.ChannelName,
@@ -88,7 +92,15 @@ namespace SelfEduV2.com.API
                 }).ToList()
 
             };
-
+            Rating currentUserR = v.Ratings.FirstOrDefault<Rating>(R=> R.User_id == userId);
+            if(currentUserR == null)
+            {
+                video.CurrentUserRating = "noRating";
+            }
+            else
+            {
+                video.CurrentUserRating = currentUserR.IsLike == true ? "liked" : "disliked";
+            }
             return video;
         }
 

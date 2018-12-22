@@ -328,3 +328,12 @@ C:\Users\haala\source\repos\SelfEduV2.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.
 C:\Users\haala\source\repos\SelfEduV2.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.DateAddedForVideo.resources
 C:\Users\haala\source\repos\SelfEduV2.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.notsure1.resources
 C:\Users\haala\source\repos\SelfEduV2.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.crap.resources
+E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.ratingModelUpdate.resources
+E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.removeRequirements.resources
+E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.smallUpdate1.resources
+E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.notsure2.resources
+E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.ChannelModelUpdate.resources
+E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.DatabaseFix.resources
+E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.DatabaseFix2.resources
+E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.Seed.resources
+E:\Documents\Visual Studio 2017\Projects\SelfEduV2.com\SelfEdu.com\SelfEduV2.com\obj\Debug\SelfEduV2.com.Migrations.Seed2.resources

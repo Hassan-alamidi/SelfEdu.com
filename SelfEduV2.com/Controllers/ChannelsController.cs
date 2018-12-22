@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace SelfEduV2.com.Controllers
 {
+    [RoutePrefix("Channels")]
     public class ChannelsController : Controller
     {
         private SelfEduContext db = SelfEduContext.Create();
@@ -42,11 +43,20 @@ namespace SelfEduV2.com.Controllers
         }
 
         // GET: Channels/Details
+        //GET: /Channels/Details?isMyChan=false&chanId=19
         [HttpGet]
-        public async Task<ActionResult> Details()
+        public async Task<ActionResult> Details(bool isMyChan, int chanId)
         {
-            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
-            int id = user.UserChannel.Channel_id;
+            int id;
+            if (isMyChan)
+            {
+                ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(User.Identity.GetUserId());
+                id = user.UserChannel.Channel_id;
+            }
+            else
+            {
+                id = chanId;
+            }
             if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -163,12 +173,15 @@ namespace SelfEduV2.com.Controllers
         }
 
         // GET: Channels/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete()
         {
-            if (id == null)
+            ApplicationUser user = db.Users.Find(User.Identity.GetUserId());
+            int id = user.UserChannel.Channel_id;
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Channel channel = await db.Channels.FindAsync(id);
             if (channel == null)
             {
@@ -180,9 +193,13 @@ namespace SelfEduV2.com.Controllers
         // POST: Channels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed()
         {
+            ApplicationUser user = db.Users.Find(User.Identity.GetUserId());
+            int id = user.UserChannel.Channel_id;
             Channel channel = await db.Channels.FindAsync(id);
+            channel.VideoCollection.Clear();
+            channel.Subscribers.Clear();
             db.Channels.Remove(channel);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

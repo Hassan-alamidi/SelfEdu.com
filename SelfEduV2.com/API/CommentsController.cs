@@ -22,16 +22,16 @@ namespace SelfEduV2.com.API
         private SelfEduContext db = new SelfEduContext();
 
         // GET: api/Comments
-        public IQueryable<CommentDTO> GetCommentDTOes()
+        public IQueryable<UserComments> GetCommentDTOes()
         {
-            return db.CommentDTOes;
+            return db.UserComments;
         }
 
         // GET: api/Comments/5
         [ResponseType(typeof(CommentDTO))]
         public async Task<IHttpActionResult> GetCommentDTO(int id)
         {
-            CommentDTO commentDTO = await db.CommentDTOes.FindAsync(id);
+            UserComments commentDTO = await db.UserComments.FindAsync(id);
             if (commentDTO == null)
             {
                 return NotFound();
@@ -119,13 +119,13 @@ namespace SelfEduV2.com.API
         [ResponseType(typeof(CommentDTO))]
         public async Task<IHttpActionResult> DeleteCommentDTO(int id)
         {
-            CommentDTO commentDTO = await db.CommentDTOes.FindAsync(id);
+            UserComments commentDTO = await db.UserComments.FindAsync(id);
             if (commentDTO == null)
             {
                 return NotFound();
             }
 
-            db.CommentDTOes.Remove(commentDTO);
+            db.UserComments.Remove(commentDTO);
             await db.SaveChangesAsync();
 
             return Ok(commentDTO);
@@ -142,7 +142,7 @@ namespace SelfEduV2.com.API
 
         private bool CommentDTOExists(int id)
         {
-            return db.CommentDTOes.Count(e => e.Id == id) > 0;
+            return db.UserComments.Count(e => e.Id == id) > 0;
         }
     }
 }

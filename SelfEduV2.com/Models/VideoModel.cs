@@ -27,7 +27,7 @@ namespace SelfEduV2.com.Models
         public string Description { get; set; }
         [Required]
         public string Keywords { get; set; }
-        [Required]
+        
         private Channel _CreatorChannel;
         public int Views { get; set; }
         public int OverAllRating { get; set; }

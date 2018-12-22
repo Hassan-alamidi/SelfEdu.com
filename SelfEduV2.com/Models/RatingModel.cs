@@ -13,9 +13,9 @@ namespace SelfEduV2.com.Models
         //if its not a like it is a dislike
         [Required]
         public bool IsLike { get; set; }
-        [Required]
+       
         public int Content_id { get; set; }
-        [Required]
-        public int User_id { get; set; }
+ 
+        public string User_id { get; set; }
     }
 }

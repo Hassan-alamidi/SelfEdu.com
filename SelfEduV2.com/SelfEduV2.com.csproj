@@ -201,7 +201,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ApplicationUsersController.cs" />
+    <Compile Include="API\ChannelsController.cs" />
     <Compile Include="API\CommentsController.cs" />
+    <Compile Include="API\RatingsController.cs" />
     <Compile Include="API\VideosController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -370,6 +373,42 @@
     <Compile Include="Migrations\201812171927223_crap.Designer.cs">
       <DependentUpon>201812171927223_crap.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812202139367_ratingModelUpdate.cs" />
+    <Compile Include="Migrations\201812202139367_ratingModelUpdate.Designer.cs">
+      <DependentUpon>201812202139367_ratingModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812202155336_removeRequirements.cs" />
+    <Compile Include="Migrations\201812202155336_removeRequirements.Designer.cs">
+      <DependentUpon>201812202155336_removeRequirements.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812212202350_smallUpdate1.cs" />
+    <Compile Include="Migrations\201812212202350_smallUpdate1.Designer.cs">
+      <DependentUpon>201812212202350_smallUpdate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220047422_notsure2.cs" />
+    <Compile Include="Migrations\201812220047422_notsure2.Designer.cs">
+      <DependentUpon>201812220047422_notsure2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220122294_ChannelModelUpdate.cs" />
+    <Compile Include="Migrations\201812220122294_ChannelModelUpdate.Designer.cs">
+      <DependentUpon>201812220122294_ChannelModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220305244_DatabaseFix.cs" />
+    <Compile Include="Migrations\201812220305244_DatabaseFix.Designer.cs">
+      <DependentUpon>201812220305244_DatabaseFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220442502_DatabaseFix2.cs" />
+    <Compile Include="Migrations\201812220442502_DatabaseFix2.Designer.cs">
+      <DependentUpon>201812220442502_DatabaseFix2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220617052_Seed.cs" />
+    <Compile Include="Migrations\201812220617052_Seed.Designer.cs">
+      <DependentUpon>201812220617052_Seed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812220642126_Seed2.cs" />
+    <Compile Include="Migrations\201812220642126_Seed2.Designer.cs">
+      <DependentUpon>201812220642126_Seed2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ArticleModel.cs" />
@@ -378,6 +417,7 @@
     <Compile Include="Models\CommentsModel.cs" />
     <Compile Include="Models\DTOs\ChannelDTO.cs" />
     <Compile Include="Models\DTOs\CommentDTO.cs" />
+    <Compile Include="Models\DTOs\UserDTOcs.cs" />
     <Compile Include="Models\DTOs\VideoDTO.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -410,11 +450,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\CustomScripts\ChannelPGScript.js" />
     <Content Include="Scripts\CustomScripts\HomePGScript.js" />
     <Content Include="Scripts\CustomScripts\VideoPGScript.js" />
     <Content Include="SelfEduV2.manifest">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Properties\PublishProfiles\SelfEdu2 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SelfEdu2 - Web Deploy.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -609,6 +652,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812171927223_crap.resx">
       <DependentUpon>201812171927223_crap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812202139367_ratingModelUpdate.resx">
+      <DependentUpon>201812202139367_ratingModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812202155336_removeRequirements.resx">
+      <DependentUpon>201812202155336_removeRequirements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812212202350_smallUpdate1.resx">
+      <DependentUpon>201812212202350_smallUpdate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220047422_notsure2.resx">
+      <DependentUpon>201812220047422_notsure2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220122294_ChannelModelUpdate.resx">
+      <DependentUpon>201812220122294_ChannelModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220305244_DatabaseFix.resx">
+      <DependentUpon>201812220305244_DatabaseFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220442502_DatabaseFix2.resx">
+      <DependentUpon>201812220442502_DatabaseFix2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220617052_Seed.resx">
+      <DependentUpon>201812220617052_Seed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812220642126_Seed2.resx">
+      <DependentUpon>201812220642126_Seed2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
